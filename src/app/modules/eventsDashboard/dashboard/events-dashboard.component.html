@@ -1,0 +1,11 @@
+<div *ngIf="eventNames$ | async as eventNames">
+  <div *ngFor="let event of eventNames">
+    <p>{{ event.name }}</p>
+  </div>
+</div>
+<div *ngIf="eventTypes$ | async as types">
+  <div *ngFor="let type of types">
+    <p>{{ type.name }}</p>
+  </div>
+</div>
+<app-events-table></app-events-table>
