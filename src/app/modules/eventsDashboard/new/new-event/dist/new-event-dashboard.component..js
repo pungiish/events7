@@ -84,7 +84,6 @@ var NewEventDashboardComponent = /** @class */ (function () {
             return [];
         }
     };
-    NewEventDashboardComponent.prototype.onEventSelect = function (eventId) { };
     NewEventDashboardComponent.prototype.onSubmit = function () {
         if (!this.eventForm.invalid) {
             if (this.firestoreService.isEditing$.value) {

@@ -115,8 +115,6 @@ export class NewEventDashboardComponent implements OnInit {
     }
   }
 
-  onEventSelect(eventId: string) {}
-
   onSubmit() {
     if (!this.eventForm.invalid) {
       if (this.firestoreService.isEditing$.value) {
@@ -124,7 +122,6 @@ export class NewEventDashboardComponent implements OnInit {
       } else {
         this.firestoreService.createEvent({ ...this.eventForm.value });
       }
-
       this.router.navigate(['']);
     }
   }

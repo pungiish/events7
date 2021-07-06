@@ -9,11 +9,7 @@ exports.__esModule = true;
 exports.EventsDashboardComponent = void 0;
 var core_1 = require("@angular/core");
 var EventsDashboardComponent = /** @class */ (function () {
-    function EventsDashboardComponent(firestoreService) {
-        this.firestoreService = firestoreService;
-        this.selectedType = [];
-        this.firestoreService.getEventNames();
-        this.firestoreService.getEventTypes();
+    function EventsDashboardComponent() {
     }
     EventsDashboardComponent.prototype.ngOnInit = function () { };
     EventsDashboardComponent = __decorate([

@@ -27,12 +27,9 @@ var FirestoreDataService = /** @class */ (function () {
     function FirestoreDataService(afs) {
         this.afs = afs;
         this.selectedEvent$ = new rxjs_1.BehaviorSubject(null);
-        this.eventName$ = new rxjs_1.BehaviorSubject(null);
-        this.eventType$ = new rxjs_1.BehaviorSubject(null);
         this.isEditing$ = new rxjs_1.BehaviorSubject(false);
     }
     FirestoreDataService.prototype.getEvents = function () {
-        var _this = this;
         var events = this.afs
             .collection('events')
             .snapshotChanges()
@@ -79,8 +76,6 @@ var FirestoreDataService = /** @class */ (function () {
         }));
         return rxjs_1.combineLatest([events, eventNames, eventTypes]).pipe(operators_1.map(function (_a) {
             var events = _a[0], eventNames = _a[1], eventTypes = _a[2];
-            _this.eventName$.next(eventNames);
-            _this.eventType$.next(eventTypes);
             events = eventMapping_helper_1.filterEvents(events, eventTypes, eventNames);
             return { events: events, eventNames: eventNames, eventTypes: eventTypes };
         }));

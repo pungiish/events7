@@ -21,10 +21,11 @@ var EventsTableComponent = /** @class */ (function () {
             'actions',
         ];
         this.clickedRows = new Set();
+    }
+    EventsTableComponent.prototype.ngOnInit = function () {
         this.firestoreService.isEditing$.next(false);
         this.eventsData$ = this.firestoreService.getEvents();
-    }
-    EventsTableComponent.prototype.ngOnInit = function () { };
+    };
     EventsTableComponent.prototype.onEditClick = function (event) {
         this.firestoreService.selectedEvent$.next(event);
         this.router.navigate(['edit', event.id]);

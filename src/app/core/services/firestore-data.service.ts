@@ -10,8 +10,6 @@ import { filterEvents } from '../helpers/eventMapping.helper';
 })
 export class FirestoreDataService {
   selectedEvent$ = new BehaviorSubject<IEvent | null>(null);
-  eventName$ = new BehaviorSubject<IEventName[] | null>(null);
-  eventType$ = new BehaviorSubject<IEventType[] | null>(null);
   isEditing$ = new BehaviorSubject<boolean>(false);
   constructor(private afs: AngularFirestore) {}
 
@@ -80,8 +78,6 @@ export class FirestoreDataService {
       );
     return combineLatest([events, eventNames, eventTypes]).pipe(
       map(([events, eventNames, eventTypes]) => {
-        this.eventName$.next(eventNames);
-        this.eventType$.next(eventTypes);
         events = filterEvents(events, eventTypes, eventNames);
         return { events, eventNames, eventTypes };
       })

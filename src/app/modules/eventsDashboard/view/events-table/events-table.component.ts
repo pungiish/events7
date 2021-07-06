@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {
   Event,
-  IEvent,
   IEventName,
   IEventType,
 } from 'src/app/core/models/Event.model';
