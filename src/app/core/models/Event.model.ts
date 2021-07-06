@@ -37,7 +37,6 @@ export class Event implements IEvent {
     this.type = data.type.id;
     this.priority = data.priority;
     this.relatedEvents = mapEventsHelper(data['relatedEvents']);
-    console.log(data.relatedEvents)
     this.id = id;
   }
 }

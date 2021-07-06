@@ -1,18 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
-import { BehaviorSubject, combineLatest, forkJoin, Observable, of } from 'rxjs';
-import {
-  catchError,
-  first,
-  map,
-  repeatWhen,
-  shareReplay,
-  switchMap,
-  take,
-  takeUntil,
-  tap,
-} from 'rxjs/operators';
-import * as firebase from 'firebase/app';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
+import { catchError, map, shareReplay, take } from 'rxjs/operators';
 import { Event, IEvent, IEventName, IEventType } from '../models/Event.model';
 import { filterEvents } from '../helpers/eventMapping.helper';
 
@@ -38,7 +27,6 @@ export class FirestoreDataService {
         map((collection) => {
           return collection.map((doc: any) => {
             let document = doc.payload.doc;
-            console.log(document.data());
             return {
               ...new Event(document.id, document.data()),
             };
@@ -137,19 +125,6 @@ export class FirestoreDataService {
       );
   }
 
-  getEventNamesById(id: number): any {
-    const a = this.afs.collection('eventNames', (ref) =>
-      ref.where(firebase.default.firestore.FieldPath.documentId(), '==', id)
-    );
-    return a.snapshotChanges().pipe(
-      map((collection: any) => {
-        return collection.map((doc: any) => {
-          return doc.payload.doc.data();
-        });
-      })
-    );
-  }
-
   createEvent(event: Event): void {
     event.relatedEvents = event.relatedEvents.map((relatedEventId) => {
       return this.afs.firestore.doc('eventNames/' + relatedEventId) as any;
@@ -191,7 +166,6 @@ export class FirestoreDataService {
       .get()
       .pipe(
         map((event) => {
-          console.log(event.data());
           return {
             ...new Event(event.id, event.data()),
           };

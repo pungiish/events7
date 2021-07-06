@@ -10,7 +10,6 @@ var Event = /** @class */ (function () {
         this.type = data.type.id;
         this.priority = data.priority;
         this.relatedEvents = eventMapping_helper_1.mapEventsHelper(data['relatedEvents']);
-        console.log(data.relatedEvents);
         this.id = id;
     }
     return Event;

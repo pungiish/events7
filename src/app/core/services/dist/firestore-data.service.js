@@ -21,7 +21,6 @@ exports.FirestoreDataService = void 0;
 var core_1 = require("@angular/core");
 var rxjs_1 = require("rxjs");
 var operators_1 = require("rxjs/operators");
-var firebase = require("firebase/app");
 var Event_model_1 = require("../models/Event.model");
 var eventMapping_helper_1 = require("../helpers/eventMapping.helper");
 var FirestoreDataService = /** @class */ (function () {
@@ -40,7 +39,6 @@ var FirestoreDataService = /** @class */ (function () {
             .pipe(operators_1.map(function (collection) {
             return collection.map(function (doc) {
                 var document = doc.payload.doc;
-                console.log(document.data());
                 return __assign({}, new Event_model_1.Event(document.id, document.data()));
             });
         }), operators_1.catchError(function (err) {
@@ -117,16 +115,6 @@ var FirestoreDataService = /** @class */ (function () {
             });
         }));
     };
-    FirestoreDataService.prototype.getEventNamesById = function (id) {
-        var a = this.afs.collection('eventNames', function (ref) {
-            return ref.where(firebase["default"].firestore.FieldPath.documentId(), '==', id);
-        });
-        return a.snapshotChanges().pipe(operators_1.map(function (collection) {
-            return collection.map(function (doc) {
-                return doc.payload.doc.data();
-            });
-        }));
-    };
     FirestoreDataService.prototype.createEvent = function (event) {
         var _this = this;
         event.relatedEvents = event.relatedEvents.map(function (relatedEventId) {
@@ -162,7 +150,6 @@ var FirestoreDataService = /** @class */ (function () {
             .doc(eventId)
             .get()
             .pipe(operators_1.map(function (event) {
-            console.log(event.data());
             return __assign({}, new Event_model_1.Event(event.id, event.data()));
         }), operators_1.take(1));
     };
