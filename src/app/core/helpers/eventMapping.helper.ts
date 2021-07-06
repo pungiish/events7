@@ -2,10 +2,12 @@ import { IEvent, IEventName, IEventType } from '../models/Event.model';
 
 export const mapEventsHelper = (relatedEvents: any[]): any => {
   relatedEvents = relatedEvents.map(
-    (eventDoc) =>
-      (eventDoc = {
+    (eventDoc) =>{
+      return (eventDoc = {
         id: eventDoc.id,
       })
+    }
+      
   );
   return relatedEvents;
 };
@@ -26,7 +28,6 @@ export const filterEventTypes = (
 ) => {
   return (events = events.map((event) => {
     event.type = eventTypes.find((eventType) => {
-      console.log(eventType);
       return eventType.id === event.type;
     })?.name as string;
     return event;
@@ -38,14 +39,14 @@ export const filterRelatedEvents = (
   relatedEvents: IEventName[]
 ) => {
   return (events = events.map((event) => {
-    event.relatedEvents = event.relatedEvents.map((relatedEventId) => {
+    let filteredRelatedEvents = event.relatedEvents.map((relatedEventId) => {
       return (
-        (relatedEvents.find((eventName) => {
-            console.log(eventName)
-          return eventName.id == (relatedEventId as IEventName).id;
-        }) as IEventName).name
-      );
+        relatedEvents.find((eventName) => {
+          return eventName.id == (relatedEventId as IEventName)?.id;
+        }) as IEventName
+      )?.name;
     });
+    event.relatedEvents = filteredRelatedEvents;
     return event;
   }));
 };

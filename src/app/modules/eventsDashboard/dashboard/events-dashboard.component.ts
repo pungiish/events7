@@ -11,13 +11,8 @@ import { FirestoreDataService } from 'src/app/core/services/firestore-data.servi
 export class EventsDashboardComponent implements OnInit {
   eventNames$?: Observable<any>;
   eventTypes$?: Observable<any>;
-  event$!: Observable<any>;
   selectedType: string[] = [];
-  constructor(public firestoreService: FirestoreDataService) {
-    this.event$ = this.firestoreService
-      .getEvents()
-      .pipe(tap((x) => console.log(x)));
-  }
+  constructor(public firestoreService: FirestoreDataService) {}
 
   ngOnInit(): void {}
 }

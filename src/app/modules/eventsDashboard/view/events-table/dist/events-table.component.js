@@ -9,20 +9,29 @@ exports.__esModule = true;
 exports.EventsTableComponent = void 0;
 var core_1 = require("@angular/core");
 var EventsTableComponent = /** @class */ (function () {
-    function EventsTableComponent() {
-        this.displayedColumns = ['name', 'description', 'type', 'priority', 'relatedEvents', 'actions'];
+    function EventsTableComponent(firestoreService, router) {
+        this.firestoreService = firestoreService;
+        this.router = router;
+        this.displayedColumns = [
+            'name',
+            'description',
+            'type',
+            'priority',
+            'relatedEvents',
+            'actions',
+        ];
         this.clickedRows = new Set();
+        this.firestoreService.isEditing$.next(false);
+        this.eventsData$ = this.firestoreService.getEvents();
     }
     EventsTableComponent.prototype.ngOnInit = function () { };
-    EventsTableComponent.prototype.onEditClick = function (element) {
-        console.log(element);
+    EventsTableComponent.prototype.onEditClick = function (event) {
+        this.firestoreService.selectedEvent$.next(event);
+        this.router.navigate(['edit', event.id]);
     };
-    EventsTableComponent.prototype.onDeleteClick = function (element) {
-        console.log(element);
+    EventsTableComponent.prototype.onDeleteClick = function (eventId) {
+        this.firestoreService.deleteEvent(eventId);
     };
-    __decorate([
-        core_1.Input()
-    ], EventsTableComponent.prototype, "eventsData");
     EventsTableComponent = __decorate([
         core_1.Component({
             selector: 'app-events-table',

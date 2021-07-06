@@ -1,0 +1,73 @@
+<form [formGroup]="eventForm">
+  <div class="form-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error
+        *ngIf="
+          eventForm.get('name')?.errors?.required
+        "
+        >invalid</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Event Type</mat-label>
+      <mat-select formControlName="type" (valueChange)="onTypeSelect($event)">
+        <mat-option
+          *ngFor="let eventType of eventType$ | async"
+          [value]="eventType.id"
+          >{{ eventType.name }}</mat-option
+        >
+      </mat-select>
+      <mat-error *ngIf="eventForm.get('type')?.errors?.required"
+        >invalid</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Related Events</mat-label>
+      <mat-select
+        formControlName="relatedEvents"
+        (valueChange)="onEventSelect($event)"
+        multiple
+      >
+        <mat-option
+          *ngFor="let eventName of eventName$ | async"
+          [value]="eventName.id"
+          >{{ eventName.name }}</mat-option
+        >
+      </mat-select>
+      <mat-error *ngIf="eventForm.get('relatedEvents')?.errors?.required"
+        >invalid</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Priority</mat-label>
+        <input matInput formControlName="priority" type="number" min="0" max="10"/>
+        <mat-error
+          *ngIf="
+            eventForm.get('priority')?.errors?.required
+          "
+          >invalid</mat-error
+        >
+      </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error
+        *ngIf="
+          eventForm.get('description')?.errors?.required
+        "
+        >invalid</mat-error
+      >
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+      (click)="onSubmit()"
+    >
+      Submit
+    </button>
+  </div>
+</form>

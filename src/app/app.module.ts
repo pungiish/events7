@@ -5,12 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { CoreModule } from './core/core.module';
 import { EventsDashboardComponent } from './modules/eventsDashboard/dashboard/events-dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsDashboardModule } from './modules/eventsDashboard/events-dashboard.module';
+import { FirestoreDataService } from './core/services/firestore-data.service';
 
 @NgModule({
   declarations: [AppComponent, EventsDashboardComponent],
@@ -23,7 +24,7 @@ import { EventsDashboardModule } from './modules/eventsDashboard/events-dashboar
     CoreModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [FirestoreDataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -4,14 +4,22 @@ import { EventsDashboardComponent } from './modules/eventsDashboard/dashboard/ev
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'events',
     component: EventsDashboardComponent,
-    loadChildren: () => import('./modules/eventsDashboard/events-dashboard.module').then(m => m.EventsDashboardModule)
-  }
+    loadChildren: () =>
+      import('./modules/eventsDashboard/events-dashboard.module').then(
+        (m) => m.EventsDashboardModule
+      ),
+  },
+  {
+    path: '',
+    redirectTo: 'events',
+    pathMatch: 'prefix',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

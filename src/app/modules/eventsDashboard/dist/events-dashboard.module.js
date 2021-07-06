@@ -9,19 +9,33 @@ exports.__esModule = true;
 exports.EventsDashboardModule = void 0;
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
-var firestore_data_service_1 = require("src/app/core/services/firestore-data.service");
 var table_1 = require("@angular/material/table");
 var events_table_component_1 = require("./view/events-table/events-table.component");
 var button_1 = require("@angular/material/button");
 var icon_1 = require("@angular/material/icon");
+var events_dashboard_routing_module_1 = require("./events-dashboard-routing.module");
+var new_event_dashboard_component_1 = require("./new/new-event/new-event-dashboard.component.");
+var form_field_1 = require("@angular/material/form-field");
+var select_1 = require("@angular/material/select");
+var input_1 = require("@angular/material/input");
+var forms_1 = require("@angular/forms");
 var EventsDashboardModule = /** @class */ (function () {
     function EventsDashboardModule() {
     }
     EventsDashboardModule = __decorate([
         core_1.NgModule({
-            declarations: [events_table_component_1.EventsTableComponent],
-            imports: [common_1.CommonModule, table_1.MatTableModule, button_1.MatButtonModule, icon_1.MatIconModule],
-            providers: [firestore_data_service_1.FirestoreDataService],
+            declarations: [events_table_component_1.EventsTableComponent, new_event_dashboard_component_1.NewEventDashboardComponent],
+            imports: [
+                common_1.CommonModule,
+                events_dashboard_routing_module_1.EventsDashboardRoutingModule,
+                table_1.MatTableModule,
+                button_1.MatButtonModule,
+                icon_1.MatIconModule,
+                form_field_1.MatFormFieldModule,
+                select_1.MatSelectModule,
+                input_1.MatInputModule,
+                forms_1.ReactiveFormsModule
+            ],
             exports: [events_table_component_1.EventsTableComponent]
         })
     ], EventsDashboardModule);

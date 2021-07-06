@@ -6,7 +6,7 @@ export interface IEvent {
   type: string;
   priority: number;
   relatedEvents: IEventName[] | string[];
-  id?: string;
+  id?: string | null;
 }
 
 export interface IEventName {
@@ -17,7 +17,7 @@ export interface IEventName {
 export interface IEventType {
     id?: string;
     name: string;
-    relatedEvents: string[];
+    eventNameIds: string[];
 }
 
 export class Event implements IEvent {
@@ -26,10 +26,10 @@ export class Event implements IEvent {
   type: string;
   priority: number;
   relatedEvents: IEventName[] | string[];
-  id?: string;
+  id?: string | null;
 
   constructor(
-    id: string,
+    id: string | null = null,
     data: any
   ) {
     this.name = data.name;
@@ -37,7 +37,7 @@ export class Event implements IEvent {
     this.type = data.type.id;
     this.priority = data.priority;
     this.relatedEvents = mapEventsHelper(data['relatedEvents']);
-    console.log(data)
+    console.log(data.relatedEvents)
     this.id = id;
   }
 }
