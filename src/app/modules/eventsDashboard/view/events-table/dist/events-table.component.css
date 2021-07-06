@@ -1,0 +1,25 @@
+.flex-container {
+  margin: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.demo-table {
+  width: 100%;
+}
+.demo-table td, .demo-table th {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+.demo-table .mat-sort-header-container {
+  justify-content: center !important;
+}
+.demo-table .mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+.demo-table .demo-row-is-clicked {
+  font-weight: bold;
+}

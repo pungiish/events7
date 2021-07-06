@@ -1,3 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-.mat-icon-button:hover .mat-button-focus-overlay
-    opacity: 0.5 !important
+.mat-icon-button:hover .mat-button-focus-overlay {
+  opacity: 0.5 !important;
+}
