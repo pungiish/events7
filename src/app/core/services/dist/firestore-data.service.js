@@ -52,7 +52,7 @@ var FirestoreDataService = /** @class */ (function () {
                     name: doc.payload.doc.data().name
                 };
             });
-        }), operators_1.shareReplay(2), operators_1.catchError(function (err) {
+        }), operators_1.shareReplay(1), operators_1.catchError(function (err) {
             console.log(err);
             return rxjs_1.of(err);
         }));
@@ -70,7 +70,7 @@ var FirestoreDataService = /** @class */ (function () {
                     })
                 };
             });
-        }), operators_1.shareReplay(2), operators_1.catchError(function (err) {
+        }), operators_1.shareReplay(1), operators_1.catchError(function (err) {
             console.log(err);
             return rxjs_1.of(err);
         }));

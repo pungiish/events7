@@ -47,7 +47,7 @@ export class FirestoreDataService {
             };
           });
         }),
-        shareReplay(2),
+        shareReplay(1),
         catchError((err) => {
           console.log(err);
           return of(err);
@@ -70,7 +70,7 @@ export class FirestoreDataService {
             };
           });
         }),
-        shareReplay(2),
+        shareReplay(1),
         catchError((err) => {
           console.log(err);
           return of(err);
